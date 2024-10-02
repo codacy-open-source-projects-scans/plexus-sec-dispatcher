@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright (c) 2008 Sonatype, Inc. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
+ */
+-->
+<model xmlns="http://codehaus-plexus.github.io/MODELLO/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://codehaus-plexus.github.io/MODELLO/2.0.0 https://codehaus-plexus.github.io/modello/xsd/modello-2.0.0.xsd"
+  xml.namespace="http://codehaus-plexus.github.io/plexus-sec-dispatcher/${version}"
+  xml.schemaLocation="https://codehaus-plexus.github.io/xsd/plexus-sec-dispatcher-${version}.xsd">
+
+  <id>settings-security</id>
+  <name>SecurityConfiguration</name>
+  <description>SecurityConfiguration</description>
+
+  <defaults>
+    <default>
+      <key>package</key>
+      <value>org.codehaus.plexus.components.secdispatcher.model</value>
+    </default>
+  </defaults>
+
+  <classes>
+    <class rootElement="true">
+      <name>SettingsSecurity</name>
+      <version>1.0.0+</version>
+      <fields>
+        <field>
+          <name>master</name>
+          <version>1.0.0/2.1.0</version>
+          <type>String</type>
+          <description>encrypted master password</description>
+        </field>
+        <field>
+          <name>relocation</name>
+          <version>1.0.0/2.1.0</version>
+          <type>String</type>
+          <required>false</required>
+          <description>Relocates configuration to given reference. Reference if relative, will be resolved from the relocated configuration directory</description>
+        </field>
+        <field>
+          <name>modelVersion</name>
+          <version>3.0.0+</version>
+          <type>String</type>
+          <required>true</required>
+          <description>The version of the model</description>
+        </field>
+        <field>
+          <name>masterSource</name>
+          <version>3.0.0+</version>
+          <type>String</type>
+          <required>true</required>
+          <description>The masterSource describes the source of the master password</description>
+        </field>
+        <field>
+          <name>masterCipher</name>
+          <version>3.0.0+</version>
+          <type>String</type>
+          <required>true</required>
+          <description>The Cipher to be used for master password</description>
+        </field>
+        <field>
+          <name>configurations</name>
+          <version>1.0.0+</version>
+          <description>Optional named Dispatcher configurations</description>
+          <required>false</required>
+          <association>
+            <type>Config</type>
+            <multiplicity>*</multiplicity>
+          </association>
+        </field>
+      </fields>
+    </class>
+
+    <class>
+      <name>Config</name>
+      <version>1.0.0+</version>
+      <description>Named Dispatcher configuration</description>
+      <fields>
+        <field>
+          <name>name</name>
+          <type>String</type>
+          <required>true</required>
+          <version>1.0.0+</version>
+          <description>Name of Dispatcher configuration is meant for</description>
+        </field>
+        <field>
+          <name>properties</name>
+          <version>1.0.0+</version>
+          <description>properties</description>
+          <association>
+            <type>ConfigProperty</type>
+            <multiplicity>*</multiplicity>
+          </association>
+        </field>
+      </fields>
+    </class>
+    <class>
+      <name>ConfigProperty</name>
+      <version>1.0.0+</version>
+      <description>generic property - name/value pair</description>
+      <fields>
+        <field>
+          <name>name</name>
+          <type>String</type>
+          <required>true</required>
+          <version>1.0.0+</version>
+          <description>name of this property</description>
+        </field>
+        <field>
+          <name>value</name>
+          <type>String</type>
+          <required>true</required>
+          <version>1.0.0+</version>
+          <description>value of this property</description>
+        </field>
+      </fields>
+    </class>
+  </classes>
+</model>
