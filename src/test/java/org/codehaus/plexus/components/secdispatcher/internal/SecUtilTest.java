@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @version $Id$
  *
  */
-public class SecUtilTest {
+class SecUtilTest {
     String _confName = "cname";
     String _propName = "pname";
     String _propVal = "pval";
@@ -64,22 +64,22 @@ public class SecUtilTest {
     }
 
     @Test
-    void readWrite() throws IOException {
+    void readWrite() throws Exception {
         Path path = Path.of("./target/sec.xml");
         SettingsSecurity config = SecUtil.read(path);
         assertNotNull(config);
-        assertEquals(SecUtil.specVersion(), config.getModelVersion());
+        assertEquals("4.0", config.getModelVersion());
         assertEquals(StandardCharsets.UTF_8.name(), config.getModelEncoding());
         assertEquals("magic:mighty", config.getDefaultDispatcher());
         SecUtil.write(path, config, false);
     }
 
     @Test
-    void readWriteWithBackup() throws IOException {
+    void readWriteWithBackup() throws Exception {
         Path path = Path.of("./target/sec.xml");
         SettingsSecurity config = SecUtil.read(path);
         assertNotNull(config);
-        assertEquals(SecUtil.specVersion(), config.getModelVersion());
+        assertEquals("4.0", config.getModelVersion());
         assertEquals(StandardCharsets.UTF_8.name(), config.getModelEncoding());
         assertEquals("magic:mighty", config.getDefaultDispatcher());
         SecUtil.write(path, config, true);
